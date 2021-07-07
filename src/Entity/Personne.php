@@ -42,7 +42,7 @@ class Personne
     private $adresse;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Sport::class, inversedBy="personnes")
+     * @ORM\ManyToMany(targetEntity=Sport::class, inversedBy="personnes", cascade={"persist"})
      */
     private $sports;
 

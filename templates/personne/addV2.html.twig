@@ -25,7 +25,7 @@
                 {{ form_widget(form.prenom,{'attr':{'class':'form-control','placeholder':'Entrez votre prénom...'}}) }}
             </div>
             {{form_widget(form.adresse)}}
-            <ul class="sports" data-prototype="{{form_widget(form.sports.vars.prototype) | e('html_attr')}}"></ul>
+            {{form_widget(form.sports)}}
             {{ form_rest(form) }}
             {# <button type="submit" class="btn btn-primary">Submit</button> #}
             {# {{ form_widget(form.save, {'attr':{'class':'btn btn-primary'}}) }} #}

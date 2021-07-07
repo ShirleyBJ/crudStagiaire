@@ -29,4 +29,19 @@ jQuery(document).ready(function () {
             $tagFormLi.remove();
         });
     }
+
+    //pour supprimer les personnes
+    //récupérer les boutons delete et ajout écouteur evenement
+    $('button.deleteBtn').on("click",function(evt) {
+        //récupere l'url de index.twig.hmtl
+        let url = $(this).data('href');
+        // console.log(url);
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+            }
+        });
+    })
 });
