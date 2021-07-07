@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Adresse;
 use App\Entity\Personne;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -16,6 +17,7 @@ class PersonneType extends AbstractType
         $builder
             ->add('nom',TextType::class,["label" => "Nom : "])
             ->add('prenom',TextType::class,["label" => "Prénom : "])
+            ->add('adresse',AdresseType::class,["label" => "Adresse: "])
             ->add('save', SubmitType::class,["label"=>"Ajouter une personne"])
         ;
     }
