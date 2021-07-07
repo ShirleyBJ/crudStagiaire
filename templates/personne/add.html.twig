@@ -3,5 +3,29 @@
 {% block title %}Hello PersonneController!{% endblock %}
 
 {% block body %}
-    {{form(form)}}
+    <div class="container">
+        {# {{form(form)}} #}
+        {# Désactiver validation HTML en ajoutant un attribut à form_start #}
+        {{ form_start(form, {'attr':{'noValidate':'noValidate'}}) }}
+        {{ form_errors(form) }}
+            <div class="form-group">
+                {# <label for="exampleInputEmail1">Email address</label> #}
+                {{ form_label(form.nom, "Nom de la personne") }}
+                {# {{ form_errors(form.nom) }} #} {# Evite les doublons ap. modif dans twig.yaml #}
+                {# <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> #}
+                {{ form_widget(form.nom,{'attr':{'class':'form-control','aria-describedby':'emailHelp', 'placeholder':'Entrez votre nom...'}}) }}
+                {# <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> #}
+            </div>
+            <div class="form-group">
+                {# <label for="exampleInputPassword1">Password</label> #}
+                {{ form_label(form.prenom, "Prénom de la personne") }}
+                {# {{ form_errors(form.prenom) }} #}
+                {# <input type="password" class="form-control" id="exampleInputPassword1"> #}
+                {{ form_widget(form.prenom,{'attr':{'class':'form-control','placeholder':'Entrez votre prénom...'}}) }}
+            </div>
+            {# <button type="submit" class="btn btn-primary">Submit</button> #}
+            {{ form_widget(form.save, {'attr':{'class':'btn btn-primary'}}) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

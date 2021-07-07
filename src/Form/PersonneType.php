@@ -14,9 +14,9 @@ class PersonneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('save',SubmitType::class,['label'=>'Ajouter une personne']);
+            ->add('nom',TextType::class,["label" => "Nom : "])
+            ->add('prenom',TextType::class,["label" => "Prénom : "])
+            ->add('save', SubmitType::class,["label"=>"Ajouter une personne"])
         ;
     }
 
