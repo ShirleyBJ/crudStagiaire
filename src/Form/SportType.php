@@ -13,7 +13,7 @@ class SportType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('personnes')
+            // ->add('personnes')
         ;
     }
 

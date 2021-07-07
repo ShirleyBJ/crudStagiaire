@@ -4,6 +4,7 @@
 
 {% block body %}
     <div class="container">
+    <h1>Formulaire</h1>
         {# {{form(form)}} #}
         {# Désactiver validation HTML en ajoutant un attribut à form_start #}
         {{ form_start(form, {'attr':{'noValidate':'noValidate'}}) }}
@@ -23,6 +24,8 @@
                 {# <input type="password" class="form-control" id="exampleInputPassword1"> #}
                 {{ form_widget(form.prenom,{'attr':{'class':'form-control','placeholder':'Entrez votre prénom...'}}) }}
             </div>
+            {{form_widget(form.adresse)}}
+            <ul class="sports" data-prototype="{{form_widget(form.sports.vars.prototype)|e('html_attr')}}"></ul>
             {{ form_rest(form) }}
             {# <button type="submit" class="btn btn-primary">Submit</button> #}
             {# {{ form_widget(form.save, {'attr':{'class':'btn btn-primary'}}) }} #}
