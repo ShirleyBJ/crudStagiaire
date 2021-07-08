@@ -40,7 +40,7 @@ jQuery(document).ready(function () {
             url: url,
             type: 'DELETE',
             success: function(result) {
-                // Do something with the result
+                document.location.Reload();
             }
         });
     })
