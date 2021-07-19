@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Personne;
 use App\Form\PersonneType;
 use App\Form\PersonneTypeV2;
+use App\Service\FullnameService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,10 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class PersonneController extends AbstractController
 {
     #[Route('/personne', name: 'personne')]
-    public function index(): Response
+    //inversion de contrôle : injecte l'objet dans le controller
+    public function index(FullnameService $fullnameService): Response
     {
         $repo=$this->getDoctrine()->getRepository(Personne::class);
-        $personnes = $repo->findAll();        
+        $personnes = $repo->findAll();  
+        //instanciation de la classe fullname service
+        // $fullnameService = new FullnameService();
+        foreach ($personnes as $p){
+            $p->nomComplet = $fullnameService->getFullName($p->getPrenom(), $p->getNom());
+        }
         return $this->render('personne/index.html.twig',[
             'personnes' => $personnes,
         ]);
