@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block body %}
+	{% if panier.lignePaniers | length == 0 %}
+		Panier est vide !
+	{% else %}
 	<table class="table">
 		<thead>
 			<tr>
@@ -23,8 +26,10 @@
 					<td class="prixTotal">{{ligne.produit.prix*ligne.quantite}}</td>
 				</tr>
 			{% endfor %}
+	
 		</tbody>
 	</table>
+	{% endif %}
 	<script src="{{asset('js/script.js')}}"></script>
 {% endblock %}
 
