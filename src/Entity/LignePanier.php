@@ -13,7 +13,7 @@ class LignePanier
         return $this->produit;
     }
 
-    public function setProduit(string $produit): self
+    public function setProduit(?Produit $produit): self
     {
         $this->produit = $produit;
 

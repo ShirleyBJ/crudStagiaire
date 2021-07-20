@@ -1,4 +1,5 @@
 <?php
+//sharemycode/zud
 
 namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -45,9 +46,24 @@ class Panier
         return $this;
     }
 
-    public function removeLignePanier(LignePanier $lignePanier): self
+    public function updateLignePanier($idProduit, $quantite): self
     {
-        $this->lignePaniers->removeElement($lignePanier);
+        foreach ($this->lignePaniers as $ligne) {
+            if($ligne->getProduit()->getId() == $idProduit)
+            {
+                $ligne->setQuantite($quantite); 
+                return $this;
+            }
+        }
+        return $this;
+    }
+
+    public function removeLignePanier($idProduit): self
+    {
+        $this->lignePaniers = $this->lignePaniers->filter(function($ligne) use ($idProduit){//utilise fonction filter [fonction de ArrayCollection] qui prend un argument une autre fonction
+        //fonction interne par défaut ne voit pas les varibale globale, on utilise le mot clé USE pour voir variable de la fonction externe.
+            return $ligne->getProduit()->getId() != $idProduit;
+        });
 
         return $this;
     }

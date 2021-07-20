@@ -23,7 +23,8 @@
 						{# <button data-href="{{ path('produit_delete', {'id': p.id })}}" class="btn btn-danger deleteBtn">
 						Supprimer</button> #}
 
-						<a href="/panier/add" class="btn btn-warning">Ajouter au panier</a>
+						<a href="/panier/add" class="btn btn-warning addBtnPanier" data-id="{{p.id}}">Ajouter au panier</a>
+						{#Envoie identifiant de produit avec attribut data#}
 					</td>
 				</tr>
 			{% endfor %}
