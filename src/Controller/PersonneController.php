@@ -6,11 +6,13 @@ use App\Entity\Personne;
 use App\Form\PersonneType;
 use App\Form\PersonneTypeV2;
 use App\Service\FullnameService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[IsGranted('ROLE_ADMIN')]
 class PersonneController extends AbstractController
 {
     #[Route('/personne', name: 'personne')]
@@ -32,6 +34,7 @@ class PersonneController extends AbstractController
     #[Route('/personne/add', name: 'personne_add', methods:['GET','POST'])]
     public function add(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $personne = new Personne();
         $form = $this->createForm(PersonneType::class, $personne);
         $form->handleRequest($request);
