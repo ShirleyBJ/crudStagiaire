@@ -53,7 +53,10 @@ class SecurityController extends AbstractController
         //sharemycode/gxv
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
+        //traitement de la requete
         $form->handleRequest($request);
+        
+        //vérifie si requete reçu est de type POST
         if ( $form->isSubmitted() && $form->isValid() ) {
             $user = $form->getData();
             //encoder ou hasher le mdp
@@ -64,6 +67,8 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+            $this->addFlash("message","Création de compte réussi");
+            //redirection vers page connexion
             return $this->redirectToRoute("app_login");
         }
         return $this->render('security/register.html.twig', [

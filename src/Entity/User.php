@@ -6,7 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints  as Assert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -19,8 +19,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $id;
 
-    /**
+/**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *     message = "Email '{{ value }}' n'est pas valide."
+     * )
      */
     private $email;
 
@@ -32,16 +35,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Password ne peut pas être vide !")
+     * @Assert\Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Nom est obligatoire !")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Prénom est obligatoire !")
      */
     private $prenom;
 
