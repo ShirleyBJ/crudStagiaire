@@ -19,7 +19,7 @@
         {% endblock %}
     </head>
     <body>
-        {{ dump(app.user) }} {# Retourne utilisateur qui est connecté#}
+        {# {{ dump(app.user) }} Retourne utilisateur qui est connecté #}
         {% if app.user is not null %}
             <a class="btn btn-danger" href="/logout"> Déconnexion </a>
         {% endif %}
