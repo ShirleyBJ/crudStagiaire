@@ -57,6 +57,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $dateInscription;
 
+    public static function build($nom, $prenom, $email, $password)
+    {
+        $user = new User();
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        return $user;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,7 +163,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setNom(string $nom): self
     {
-        $this->nom = $nom;
+        $this->nom = trim($nom);
 
         return $this;
     }
@@ -165,7 +175,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setPrenom(string $prenom): self
     {
-        $this->prenom = $prenom;
+        $this->prenom = trim($prenom);
 
         return $this;
     }

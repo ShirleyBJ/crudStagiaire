@@ -40,3 +40,4 @@ class UtilsTest extends TestCase
         $res = Utils::puissance($a, $n);
     }
 }
+
